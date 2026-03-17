@@ -1,0 +1,363 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f1118;
+  --panel: #181b24;
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text: #eff2ff;
+  --muted: #a9b0c7;
+  --accent: #8b5cf6;
+  --accent-strong: #6d28d9;
+  --success: #34d399;
+  --danger: #fb7185;
+  --shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(139, 92, 246, 0.16), transparent 32%),
+    linear-gradient(180deg, #11131c 0%, #090b11 100%);
+  color: var(--text);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 48px;
+  display: grid;
+  gap: 24px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.hero-panel {
+  display: grid;
+  gap: 20px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #c4b5fd;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 12px;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.05;
+}
+
+.hero-copy,
+.section-heading p,
+.shortcut-card p,
+.feedback,
+li {
+  color: var(--muted);
+}
+
+.video-form {
+  display: grid;
+  gap: 10px;
+}
+
+.video-form label,
+.status-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #d2d8ef;
+}
+
+.input-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.input-row input {
+  flex: 1 1 320px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.input-row input:focus,
+.input-row button:focus {
+  outline: 2px solid rgba(139, 92, 246, 0.6);
+  outline-offset: 2px;
+}
+
+.input-row button {
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.feedback {
+  min-height: 1.3em;
+  margin-bottom: 0;
+}
+
+.feedback.error {
+  color: var(--danger);
+}
+
+.feedback.success {
+  color: var(--success);
+}
+
+.section-heading {
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin-bottom: 6px;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #090b11;
+}
+
+.video-frame iframe,
+.video-frame #youtube-player {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.loop-controls {
+  margin-top: 18px;
+}
+
+.loop-readout {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.loop-action-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.loop-action-row button {
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.loop-action-row button:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.loop-action-row button:focus {
+  outline: 2px solid rgba(139, 92, 246, 0.6);
+  outline-offset: 2px;
+}
+
+.loop-action-row button.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  border-color: transparent;
+  color: white;
+}
+
+.status-grid,
+.shortcut-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.status-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-bottom: 20px;
+}
+
+.status-card,
+.shortcut-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.status-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+
+.volume-control {
+  margin-bottom: 18px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.volume-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.volume-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+.volume-row strong {
+  min-width: 52px;
+  text-align: right;
+}
+
+.piano {
+  --white-key-width: min(11vw, 82px);
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding: 16px 0 10px;
+  margin-bottom: 22px;
+}
+
+.key {
+  position: relative;
+  border: 1px solid #0d0f17;
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  user-select: none;
+  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+}
+
+.key.white {
+  width: var(--white-key-width);
+  min-width: var(--white-key-width);
+  height: 220px;
+  margin-right: 2px;
+  background: linear-gradient(180deg, #ffffff 0%, #dce1f7 100%);
+  color: #111827;
+}
+
+.key.black {
+  width: calc(var(--white-key-width) * 0.62);
+  min-width: calc(var(--white-key-width) * 0.62);
+  height: 138px;
+  margin-left: calc(var(--white-key-width) * -0.31);
+  margin-right: calc(var(--white-key-width) * -0.31);
+  z-index: 2;
+  background: linear-gradient(180deg, #353b4c 0%, #0f1118 100%);
+  color: #eef2ff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.key.active {
+  transform: translateY(2px);
+  background: linear-gradient(180deg, #c4b5fd 0%, #7c3aed 100%);
+  color: white;
+  box-shadow: 0 0 0 2px rgba(196, 181, 253, 0.18);
+}
+
+.key-label {
+  margin-bottom: 16px;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.key.black .key-label {
+  margin-bottom: 12px;
+}
+
+.shortcut-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.shortcut-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+code {
+  padding: 0.16rem 0.4rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    width: min(100% - 20px, 1120px);
+    padding-top: 20px;
+  }
+
+  .panel {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .key.white {
+    height: 180px;
+  }
+
+  .key.black {
+    height: 116px;
+  }
+
+  .loop-action-row button {
+    width: 100%;
+  }
+
+  .volume-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .volume-row strong {
+    min-width: 0;
+    text-align: left;
+  }
+}

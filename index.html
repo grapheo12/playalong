@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayAlong Chord Finder</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="panel hero-panel">
+        <div>
+          <p class="eyebrow">PlayAlong</p>
+          <h1>Jam with YouTube and instant keyboard chords.</h1>
+          <p class="hero-copy">
+            Paste a YouTube URL, load the video, and use your keyboard to fire
+            piano-style chords in real time.
+          </p>
+        </div>
+
+        <form id="video-form" class="video-form">
+          <label for="youtube-url">YouTube URL</label>
+          <div class="input-row">
+            <input
+              id="youtube-url"
+              name="youtube-url"
+              type="url"
+              placeholder="https://www.youtube.com/watch?v=..."
+              autocomplete="off"
+              spellcheck="false"
+              required
+            />
+            <button type="submit">Load Video</button>
+          </div>
+          <p id="video-feedback" class="feedback" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel video-panel">
+        <div class="section-heading">
+          <h2>Embedded Player</h2>
+          <p>Works with standard YouTube, short, embed, and shorts links.</p>
+        </div>
+        <div class="video-frame">
+          <div id="youtube-player" aria-label="YouTube player"></div>
+        </div>
+        <div class="loop-controls">
+          <div class="loop-readout">
+            <article class="status-card">
+              <span class="status-label">Loop start</span>
+              <strong id="loop-start-value">Not set</strong>
+            </article>
+            <article class="status-card">
+              <span class="status-label">Loop end</span>
+              <strong id="loop-end-value">Not set</strong>
+            </article>
+            <article class="status-card">
+              <span class="status-label">Loop status</span>
+              <strong id="loop-status">Off</strong>
+            </article>
+          </div>
+          <div class="loop-action-row">
+            <button id="set-loop-start" type="button">Set Start</button>
+            <button id="set-loop-end" type="button">Set End</button>
+            <button id="toggle-loop" type="button">Enable Loop</button>
+            <button id="clear-loop" type="button">Clear Loop</button>
+          </div>
+          <p id="loop-feedback" class="feedback" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="panel instrument-panel">
+        <div class="section-heading">
+          <h2>Chord Keyboard</h2>
+          <p>
+            Click anywhere in the app once to unlock audio, then use the keys
+            below.
+          </p>
+        </div>
+
+        <div class="status-grid">
+          <article class="status-card">
+            <span class="status-label">Current chord</span>
+            <strong id="current-chord">Waiting for input</strong>
+          </article>
+          <article class="status-card">
+            <span class="status-label">Played notes</span>
+            <strong id="current-notes">-</strong>
+          </article>
+          <article class="status-card">
+            <span class="status-label">Audio</span>
+            <strong id="audio-status">Locked</strong>
+          </article>
+        </div>
+
+        <div class="volume-control">
+          <label class="status-label" for="volume-slider">Piano volume</label>
+          <div class="volume-row">
+            <input
+              id="volume-slider"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value="16"
+            />
+            <strong id="volume-value">16%</strong>
+          </div>
+        </div>
+
+        <div id="piano" class="piano" aria-label="Virtual piano keyboard"></div>
+
+        <div class="shortcut-grid">
+          <article class="shortcut-card">
+            <h3>Root keys</h3>
+            <p><code>C D E F G A B</code> play natural roots.</p>
+            <p>
+              <code>Shift + C/D/F/G/A</code> plays sharp roots:
+              <code>C# D# F# G# A#</code>.
+            </p>
+          </article>
+          <article class="shortcut-card">
+            <h3>Chord modifiers</h3>
+            <ul>
+              <li><code>X</code> major</li>
+              <li><code>X + m</code> minor</li>
+              <li><code>X + 2</code> sus2</li>
+              <li><code>X + 4</code> sus4</li>
+              <li><code>X + 5</code> power</li>
+              <li><code>X + ,</code> dominant 7</li>
+              <li><code>X + .</code> major 7</li>
+              <li><code>X + /</code> minor 7</li>
+              <li><code>X + ;</code> augmented</li>
+              <li><code>X + '</code> diminished</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="./youtube.js"></script>
+    <script src="./piano.js"></script>
+  </body>
+</html>
