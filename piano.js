@@ -195,7 +195,11 @@
   function buildChord(root, chordType, rootMidi = ROOT_TO_MIDI[root]) {
     const definition = CHORD_TYPES[chordType];
     const chordName = `${root}${definition.label}`;
-    const midiNotes = definition.intervals.map((interval) => rootMidi + interval);
+    const bassRootMidi = rootMidi - 12;
+    const midiNotes = [
+      bassRootMidi,
+      ...definition.intervals.map((interval) => rootMidi + interval),
+    ];
     const noteNames = midiNotes.map(noteNameFromMidi);
 
     return { chordName, midiNotes, noteNames };
