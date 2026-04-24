@@ -4,6 +4,8 @@
   const audioStatus = document.querySelector("#audio-status");
   const volumeSlider = document.querySelector("#volume-slider");
   const volumeValue = document.querySelector("#volume-value");
+  const bassToggle = document.querySelector("#bass-toggle");
+  const chordToggle = document.querySelector("#chord-toggle");
   const piano = document.querySelector("#piano");
 
   const NATURAL_KEY_ROOTS = new Set(["c", "d", "e", "f", "g", "a", "b"]);
@@ -195,11 +197,18 @@
   function buildChord(root, chordType, rootMidi = ROOT_TO_MIDI[root]) {
     const definition = CHORD_TYPES[chordType];
     const chordName = `${root}${definition.label}`;
-    const bassRootMidi = rootMidi - 12;
-    const midiNotes = [
-      bassRootMidi,
-      ...definition.intervals.map((interval) => rootMidi + interval),
-    ];
+    const midiNotes = [];
+
+    if (bassToggle.checked) {
+      midiNotes.push(rootMidi - 12);
+    }
+
+    if (chordToggle.checked) {
+      definition.intervals.forEach((interval) => {
+        midiNotes.push(rootMidi + interval);
+      });
+    }
+
     const noteNames = midiNotes.map(noteNameFromMidi);
 
     return { chordName, midiNotes, noteNames };
@@ -377,7 +386,7 @@
     await unlockAudio();
 
     const chordType = getActiveChordType();
-    const signature = `${root}:${chordType}`;
+    const signature = `${root}:${chordType}:${bassToggle.checked ? 1 : 0}:${chordToggle.checked ? 1 : 0}`;
     if (signature === activeChordSignature) {
       return;
     }
@@ -448,6 +457,14 @@
 
   volumeSlider.addEventListener("input", (event) => {
     setPianoVolume(Number(event.target.value) / 100);
+  });
+
+  bassToggle.addEventListener("change", () => {
+    triggerFromCurrentState();
+  });
+
+  chordToggle.addEventListener("change", () => {
+    triggerFromCurrentState();
   });
 
   window.addEventListener("keydown", async (event) => {
